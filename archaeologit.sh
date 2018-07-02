@@ -89,11 +89,11 @@ else
 		log -f ${LOG_FILE} "Fetching _S_${USERNAME}_E_'s GitHub repos..."
 
 		# User
-		JSON=$(curl -s "https://api.github.com/users/${USERNAME}/repos?type=all&per_page=100") # Currently not paging above 100 repos
+		JSON=$(curl -s "https://api.github.com/users/${USERNAME}/repos?per_page=100&type=source") # Currently not paging above 100 repos
 		REPOS=$(echo "${JSON}" | grep clone_url | cut -d'"' -f4)
 
 		# Organization
-		JSON=$(curl -s "https://api.github.com/orgs/${USERNAME}/repos?type=all&per_page=100") # Currently not paging above 100 repos
+		JSON=$(curl -s "https://api.github.com/orgs/${USERNAME}/repos?per_page=100&type=source") # Currently not paging above 100 repos
 		REPOS="${REPOS}"$(echo "${JSON}" | grep clone_url | cut -d'"' -f4)
 fi
 
